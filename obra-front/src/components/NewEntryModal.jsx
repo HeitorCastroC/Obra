@@ -3,12 +3,17 @@ import { getWorks, createWork, createEntry } from '../api/api'
 
 function Stars({ value, onChange }) {
     return (
-        <div className="stars-input">
+        <div className="stars-input" role="radiogroup" aria-labelledby="rating-label">
             {[1,2,3,4,5].map(n => (
                 <span
                     key={n}
+                    role="radio"
+                    aria-checked={n === value}
+                    aria-label={`${n} estrela${n > 1 ? 's' : ''}`}
+                    tabIndex={n === value || (value === 0 && n === 1) ? 0 : -1}
                     className={n <= value ? 'star filled' : 'star'}
                     onClick={() => onChange(n)}
+                    onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onChange(n)}
                 >★</span>
             ))}
         </div>
@@ -74,8 +79,9 @@ export default function NewEntryModal({ userId, onClose, onSaved }) {
                 </div>
 
                 {/* busca de obra */}
-                <label className="modal-label">Obra</label>
+                <label className="modal-label" htmlFor="obra-input">Obra</label>
                 <input
+                    id="obra-input"
                     className="modal-input"
                     placeholder="Digite o título..."
                     value={search}
@@ -99,12 +105,13 @@ export default function NewEntryModal({ userId, onClose, onSaved }) {
                 )}
 
                 {/* rating */}
-                <label className="modal-label">Rating</label>
+                <label id="rating-label" className="modal-label">Rating</label>
                 <Stars value={rating} onChange={setRating} />
 
                 {/* data */}
-                <label className="modal-label">Data de consumo</label>
+                <label className="modal-label" htmlFor="consume-date">Data de consumo</label>
                 <input
+                    id="consume-date"
                     className="modal-input"
                     type="date"
                     value={consumeDate}
@@ -113,10 +120,15 @@ export default function NewEntryModal({ userId, onClose, onSaved }) {
 
                 {/* favorita */}
                 <div className="modal-toggle-row">
-                    <label className="modal-label">Favorita</label>
+                    <label id="favorita-label" className="modal-label">Favorita</label>
                     <div
+                        role="switch"
+                        aria-checked={favorite}
+                        aria-labelledby="favorita-label"
+                        tabIndex={0}
                         className={`toggle ${favorite ? 'on' : ''}`}
                         onClick={() => setFavorite(f => !f)}
+                        onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setFavorite(f => !f)}
                     />
                 </div>
 
