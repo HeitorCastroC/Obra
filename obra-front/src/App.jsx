@@ -3,7 +3,17 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Explore from './pages/Explore'
 
+// Placeholder for the authenticated user — replace with a real auth hook/context later
+const CURRENT_USER = { id: 1, name: 'Heitor' }
+
 function Nav({ onHome, onProfile, onExplorar }) {
+  const initials = CURRENT_USER.name
+    .split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2)
+
   return (
       <nav className="nav">
         <div className="nav-logo" onClick={onHome}>Obra</div>
@@ -12,8 +22,8 @@ function Nav({ onHome, onProfile, onExplorar }) {
           <span onClick={onExplorar}>explorar</span>
         </div>
         <div className="nav-user" onClick={onProfile}>
-          <div className="avatar">H</div>
-          <span>Heitor</span>
+          <div className="avatar">{initials}</div>
+          <span>{CURRENT_USER.name}</span>
         </div>
       </nav>
   )
@@ -31,7 +41,7 @@ function AppInner() {
   const navigate = useNavigate()
   return (
       <>
-        <Nav onHome={() => navigate('/')} onProfile={() => navigate('/profile/1')} onExplorar={() => navigate('/explorar')} />
+        <Nav onHome={() => navigate('/')} onProfile={() => navigate(`/profile/${CURRENT_USER.id}`)} onExplorar={() => navigate('/explorar')} />
         <Routes>
           <Route path="/"            element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />

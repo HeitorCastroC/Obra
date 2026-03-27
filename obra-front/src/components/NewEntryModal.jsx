@@ -56,8 +56,8 @@ export default function NewEntryModal({ userId, onClose, onSaved }) {
             }
 
             await createEntry({
-                userId: Number(userId),
-                workId: finalWorkId,
+                user: { id: Number(userId) },
+                work: { id: finalWorkId },
                 rating,
                 consumeDate: consumeDate || null,
                 favorite,
