@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getWorks } from '../api/api'
+import CreateUserForm from '../components/CreateUserForm'
 
 export default function Home() {
     const [works, setWorks] = useState([])
@@ -10,6 +11,8 @@ export default function Home() {
 
     return (
         <main className="page">
+            <CreateUserForm />
+            
             <div className="section-label">feed de atividade</div>
             <div className="empty-box">
                 <p>Nada por aqui ainda.</p>
