@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+src/main/resources/application.yaml
+
 ### STS ###
 .apt_generated
 .classpath
@@ -12,7 +14,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
-.src/main/java/com.example.obra/resources/application.yaml
+
 
 ### IntelliJ IDEA ###
 .idea
