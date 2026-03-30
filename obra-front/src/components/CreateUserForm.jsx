@@ -14,20 +14,20 @@ export default function CreateUserForm({ onUserCreated }) {
         setMessage('')
 
         if (!name.trim() || !email.trim()) {
-            setError('Nome e email são obrigatórios')
+            setError('Insert both Name and Email')
             return
         }
 
         setLoading(true)
         try {
             const response = await createUser({ name, email })
-            setMessage(`Usuário "${name}" criado com sucesso!`)
+            setMessage(`User "${name}" created successfully!`)
             setName('')
             setEmail('')
             if (onUserCreated) onUserCreated(response.data)
         } catch (err) {
             const errorMsg = err.response?.data?.message || err.message
-            setError(`Erro ao criar usuário: ${errorMsg}`)
+            setError(`Error creating user: ${errorMsg}`)
         } finally {
             setLoading(false)
         }
@@ -44,7 +44,7 @@ export default function CreateUserForm({ onUserCreated }) {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Ex: Heitor"
+                    placeholder="Name"
                     disabled={loading}
                 />
             </div>
@@ -56,7 +56,7 @@ export default function CreateUserForm({ onUserCreated }) {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Ex: heitorcastrocos@gmail.com"
+                    placeholder="example@email.com"
                     disabled={loading}
                 />
             </div>
