@@ -9,7 +9,7 @@ export default function Explore() {
     useEffect(() => {
         getWorks()
             .then(r => setWorks(r.data))
-            .catch(() => setError('Não foi possível carregar as obras.'))
+            .catch(() => setError('Works couldn`t load'))
             .finally(() => setLoading(false))
     }, [])
 
@@ -28,7 +28,7 @@ export default function Explore() {
             {!loading && !error && works.length === 0 && (
                 <div className="empty-box">
                     <p>Nenhuma obra cadastrada ainda.</p>
-                    <small>As obras aparecerão aqui quando forem registradas.</small>
+                    <small>Works will show up here when avaible.</small>
                 </div>
             )}
 
