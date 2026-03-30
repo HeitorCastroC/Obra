@@ -12,6 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
+.src/main/java/com.example.obra/resources/application.yaml
 
 ### IntelliJ IDEA ###
 .idea
