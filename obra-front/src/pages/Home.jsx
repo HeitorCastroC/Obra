@@ -13,16 +13,16 @@ export default function Home() {
         <main className="page">
             <CreateUserForm />
             
-            <div className="section-label">feed de atividade</div>
+            <div className="section-label">Activities feed page</div>
             <div className="empty-box">
-                <p>Nada por aqui ainda.</p>
-                <small>Quando usuários registrarem obras, elas aparecerão aqui.</small>
+                <p>Nothing here for now :/</p>
+                <small>The works will show up here when the Users register it.</small>
             </div>
 
             {works.length > 0 && (
                 <>
                     <div className="divider" />
-                    <div className="section-label">obras cadastradas</div>
+                    <div className="section-label">Registered works</div>
                     <div className="works-grid">
                         {works.map(w => (
                             <div key={w.id} className="work-card" onClick={() => navigate('/profile/1')}>
