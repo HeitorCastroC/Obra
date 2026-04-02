@@ -11,12 +11,21 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+
 public class EntryService {
 
     private final EntryRepository entryRepository;
     private final UserRepository  userRepository;
     private final WorkRepository  workRepository;
+
+    public EntryService(EntryRepository entryRepository,
+                        UserRepository  userRepository,
+                        WorkRepository  workRepository) {
+
+        this.entryRepository = entryRepository;
+        this.userRepository = userRepository;
+        this.workRepository = workRepository;
+    }
 
     public Entry create(Entry entry) {
         if (entry.getRating() < 0 || entry.getRating() > 5)

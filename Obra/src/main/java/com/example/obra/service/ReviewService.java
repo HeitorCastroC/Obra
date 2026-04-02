@@ -8,12 +8,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 
 public class ReviewService {
 
     private final UserRepository userRepository;
     private final ReviewRepository reviewRepository;
+
+    public ReviewService(UserRepository userRepository, ReviewRepository reviewRepository) {
+        this.userRepository = userRepository;
+        this.reviewRepository = reviewRepository;
+    }
 
     private final int headlineMAX = 40;
     private final int subHeadlineMAX = 100;
@@ -26,5 +30,7 @@ public class ReviewService {
 
 
     }
+
+
 
 

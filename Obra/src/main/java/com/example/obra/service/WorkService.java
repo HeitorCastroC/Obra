@@ -9,10 +9,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+
 public class WorkService {
 
     private final WorkRepository repository;
+
+    public WorkService(WorkRepository repository) {
+        this.repository = repository;
+    }
 
     public Work create(Work work)      { return repository.save(work); }
     public List<Work> findAll()        { return repository.findAll(); }
